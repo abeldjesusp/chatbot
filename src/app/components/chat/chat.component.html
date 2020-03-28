@@ -1,0 +1,59 @@
+<div class="container">
+    <div class="row chat-window col-xs-5 col-md-3" id="chat_window_1" style="margin-left:10px;">
+        <div class="col-xs-12 col-md-12">
+        	<div class="panel panel-default">
+                <div class="panel-heading top-bar">
+                    <div class="col-md-8 col-xs-8">
+                        <h5 class="panel-title">CovidBot-19</h5>
+                    </div>                    
+                </div>
+                <div class="panel-body msg_container_base" style="height: ;">                    
+                    <div *ngFor="let message of messages | async">
+                        <div class="row msg_container base_sent" *ngIf="message.sendBy === 'User'">
+                            <div class="col-md-10 col-xs-10">
+                                <div class="messages msg_sent">
+                                    <p>{{ message.message }}</p>
+                                    <time datetime="2009-11-13T20:00">Timothy • 51 min</time>
+                                </div>
+                            </div>
+                            <div class="col-md-2 col-xs-2 avatar">
+                                <img src="assets/img/user.png" class=" img-responsive ">
+                            </div>
+                        </div>                      
+                        
+                        <div class="row msg_container base_receive" *ngIf="message.sendBy === 'CovidBot-19'">
+                            <div class="col-md-2 col-xs-2 avatar">
+                                <img src="assets/img/covid-19.png" class=" img-responsive ">
+                            </div>
+                            <div class="col-md-10 col-xs-10">
+                                <div class="messages msg_receive">
+                                    <p>{{ message.message }}</p>
+                                    <time datetime="2009-11-13T20:00">Timothy • 51 min</time>
+                                </div>
+                            </div>
+                        </div>
+                    </div> 
+                </div>
+            </div>
+            <div class="panel-footer">
+                <div class="input-group">
+                    <input id="btn-input" 
+                           type="text"
+                           [(ngModel)]="formValue"
+                           (keyup.enter)="sendMessage()"
+
+                           class="form-control input-sm chat_input" 
+                           placeholder="Escribe un mensaje..." />
+
+                    <span class="input-group-btn">
+                        <button class="btn btn-primary btn-sm" 
+                                id="btn-chat"
+                                (click)="sendMessage()">
+                            Enviar
+                        </button>
+                    </span>
+                </div>
+            </div>
+    	</div>
+    </div>
+</div>
